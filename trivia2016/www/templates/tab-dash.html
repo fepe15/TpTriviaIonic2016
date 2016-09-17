@@ -1,0 +1,14 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+      <div class="bar bar-header bar-calm"> 
+        <h1 class="title">Bienvenido a JugalaTrivia</h1>
+      </div><br><br><br><br>
+      <div class="list">
+        <input type="text" id="usuario" name="nombre" placeholder="Ingrese Nombre" ng-model="usuario">
+        <button class="button button-block button-positive" ng-click="Juegar()" ng-disabled="(usuario == null)" >
+          J U G A R . . .
+        </button>
+    </div>
+
+  </ion-content>
+</ion-view>
