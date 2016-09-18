@@ -1,14 +1,20 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-      <div class="bar bar-header bar-calm"> 
-        <h1 class="title">Bienvenido a JugalaTrivia</h1>
-      </div><br><br><br><br>
-      <div class="list">
-        <input type="text" id="usuario" name="nombre" placeholder="Ingrese Nombre" ng-model="usuario">
-        <button class="button button-block button-positive" ng-click="Juegar()" ng-disabled="(usuario == null)" >
-          J U G A R . . .
-        </button>
-    </div>
-
+  	<div ng-hide="Ver">
+    	<button class="button button-positive" ng-bind="preguntas" style="width:100%;" ng-disabled="true">
+    	</button>
+	    <button class="button button-positive" id="uno" style="width:100%;" ng-click="Respuesta('a')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op1}}
+	    </button>
+	    <button class="button button-positive" id="dos" style="width:100%;" ng-click="Respuesta('b')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op2}}
+	    </button>
+	    <button class="button button-positive" id="tres" style="width:100%;" ng-click="Respuesta('c')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op3}}
+	    </button>
+	    <br>
+	    <button class="button button-positive" id="cuatro" style="width:100%;" ng-click="Respuesta('d')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op4}}
+	    </button>
+	    <div>
+	    	<button class="button button-full button-dark" ng-click="CargarPregunta()" ng-disabled="(eligio != true)">Siguiente Pregunta </button>
+	    </div>
+	</div>
   </ion-content>
 </ion-view>
