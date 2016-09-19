@@ -1,20 +1,19 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
   	<div ng-hide="Ver">
-    	<button class="button button-positive" ng-bind="preguntas" style="width:100%;" ng-disabled="true">
+    	<button class="button button-full button-calm" ng-bind="preguntas" ng-disabled="true">
     	</button>
-	    <button class="button button-positive" id="uno" style="width:100%;" ng-click="Respuesta('a')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op1}}
+    	<br>
+	    <button class="button button-full button-positive" id="uno"  ng-click="Respuesta('a')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op1}}
 	    </button>
-	    <button class="button button-positive" id="dos" style="width:100%;" ng-click="Respuesta('b')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op2}}
+	    <button class="button button-full button-positive" id="dos" ng-click="Respuesta('b')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op2}}
 	    </button>
-	    <button class="button button-positive" id="tres" style="width:100%;" ng-click="Respuesta('c')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op3}}
+	    <button class="button button-full button-positive" id="tres" ng-click="Respuesta('c')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op3}}
+	    </button>
+	    <button class="button button-full button-positive" id="cuatro" ng-click="Respuesta('d')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op4}}
 	    </button>
 	    <br>
-	    <button class="button button-positive" id="cuatro" style="width:100%;" ng-click="Respuesta('d')" ng-disabled="eligio"  ng-hide="finPartida">{{respuesta.op4}}
-	    </button>
-	    <div>
-	    	<button class="button button-full button-dark" ng-click="CargarPregunta()" ng-disabled="(eligio != true)">Siguiente Pregunta </button>
-	    </div>
+	    <button class="button button-full button-dark" ng-click="CargarPregunta()" ng-disabled="(eligio != true)">Siguiente Pregunta </button>
 	</div>
   </ion-content>
 </ion-view>

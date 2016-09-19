@@ -1,66 +1,79 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
-.controller('DashCtrl', function($scope) {
-	
-alert("llego");
+.controller('DashCtrl', function($scope, $state, $stateParams, $cordovaVibration) {
+
   $scope.respuesta = {};
   $scope.preguntas = "¿Quien fue el ultimo campeon del mundo en brasil 2014?";
   $scope.respuesta.op1 = "Alemania";
   $scope.respuesta.op2 = "Argentina";
   $scope.respuesta.op3 = "Brasil";
   $scope.respuesta.op4 = "Inglaterra";
+  $scope.respuesta.correcta = "Alemania";
   $scope.contador = 0;
 
   $scope.usuario = {};
-  $scope.usuario.respuesta ={}
-  $scope.usuario.respuesta.uno ={}
-  $scope.usuario.respuesta.dos ={}
-  $scope.usuario.respuesta.tres ={}
-  $scope.usuario.puntaje = {};
+  $scope.usuario.respuesta =[];
+  $scope.usuario.puntaje = 0;
+
 
  $scope.Respuesta = function(rta){
   $scope.contador ++;
   $scope.eligio = true;
-  alert("llegoALaFuncion");
   if (rta == 'a') {
-    $scope.usuario.respuesta.uno=$scope.respuesta.op1;
-    $scope.usuario.puntaje+=10;
+    $scope.usuario.respuesta[$scope.contador]=$scope.respuesta.op1;
   }
-  if (rta == 'b') {
-    $scope.usuario.respuesta.uno=$scope.respuesta.op2;
-    $scope.usuario.puntaje+=-10;
-          alert("solaaaa");
+  else if (rta == 'b') {
+    $scope.usuario.respuesta[$scope.contador]=$scope.respuesta.op2;
   }
-  if (rta == 'c') {
-    $scope.usuario.respuesta.uno=$scope.respuesta.op3;
-    $scope.usuario.puntaje+=-10;
+  else if (rta == 'c') {
+    $scope.usuario.respuesta[$scope.contador]=$scope.respuesta.op3;
   }
-  if (rta == 'd') {
-    $scope.usuario.respuesta.uno=$scope.respuesta.op4;
-    $scope.usuario.puntaje+=-10;
+  else if (rta == 'd') {
+    $scope.usuario.respuesta[$scope.contador]=$scope.respuesta.op4;
   }
-  alert($scope.usuario.respuesta.uno + "-" + $scope.usuario.puntaje);
 
-}
+  if ($scope.usuario.respuesta[$scope.contador] != $scope.respuesta.correcta){
+    $scope.usuario.puntaje-=10;
+    try{
+      $cordovaVibration.vibrate([500, 200, 500]);
+      } catch(ex){
+          console.log(ex.message);
+        }
+    }
+    else
+      $scope.usuario.puntaje+=10;
+      try{
+      $cordovaVibration.vibrate(500);
+      } catch(ex){
+          console.log(ex.message);
+        }
+    alert($scope.usuario.puntaje);
+    if ($scope.contador==3) {
+      $state.go('tab.estadisticas');
+    }      
+  }
+
+
   $scope.CargarPregunta = function(){
-    alert($scope.contador)
     if ($scope.contador == 1) {
       $scope.eligio=false;
       $scope.preguntas = "¿Quien fue el ultimo campeon de la copa Libertadores De America?";
       $scope.respuesta.op1 = "Boca Juniors";
-      $scope.respuesta.op2 = "Atletico Naciona de Medellin";
+      $scope.respuesta.op2 = "Atletico Nacional de Medellin";
       $scope.respuesta.op3 = "San Pablo";
-      $scope.respuesta.op4 = "Colo Colo";
+      $scope.respuesta.op4 = "Colo Colo"; 
+      $scope.respuesta.correcta = "Atletico Nacional de Medellin"
       }
-      else
-        if ($scope.contador == 2) {
-        $scope.eligio=false;
-        $scope.preguntas = "¿Quien fue el ultimo campeon del torneo Argentino?";
-        $scope.respuesta.op1 = "Belgrano de cordoba";
-        $scope.respuesta.op2 = "Racing";
-        $scope.respuesta.op3 = "Lanus";
-        $scope.respuesta.op4 = "San Lorenzo";
-        }
+    else
+      if ($scope.contador == 2) {
+      $scope.eligio=false;
+      $scope.preguntas = "¿Quien fue el ultimo campeon del torneo Argentino?";
+      $scope.respuesta.op1 = "Belgrano de cordoba";
+      $scope.respuesta.op2 = "Racing";
+      $scope.respuesta.op3 = "Lanus";
+      $scope.respuesta.op4 = "San Lorenzo";
+      $scope.respuesta.correcta = "Lanus"
+      }
   }
 ;
 })
@@ -80,8 +93,8 @@ alert("llego");
 
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('EstadisticasCtrl', function($scope, $stateParams, Chats) {
+  alert("llego a estadisticas");
 })
 
 .controller('AccountCtrl', function($scope) {
